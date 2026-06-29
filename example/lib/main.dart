@@ -13,9 +13,8 @@ class MyApp extends StatelessWidget {
   const MyApp({final Key? key}) : super(key: key);
 
   @override
-  Widget build(final BuildContext context) => const MaterialApp(
-        home: VoskFlutterDemo(),
-      );
+  Widget build(final BuildContext context) =>
+      const MaterialApp(home: VoskFlutterDemo());
 }
 
 class VoskFlutterDemo extends StatefulWidget {
@@ -51,10 +50,12 @@ class _VoskFlutterDemoState extends State<VoskFlutterDemo> {
   Future<void> _initVosk() async {
     try {
       final modelsList = await _modelLoader.loadModelsList();
-      final modelDescription =
-          modelsList.firstWhere((final model) => model.name == _modelName);
-      final modelPath =
-          await _modelLoader.loadFromNetwork(modelDescription.url);
+      final modelDescription = modelsList.firstWhere(
+        (final model) => model.name == _modelName,
+      );
+      final modelPath = await _modelLoader.loadFromNetwork(
+        modelDescription.url,
+      );
       final model = await _vosk.createModel(modelPath);
       if (mounted) {
         setState(() => _model = model);
@@ -100,70 +101,64 @@ class _VoskFlutterDemoState extends State<VoskFlutterDemo> {
   }
 
   Widget _androidExample() => Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () async {
-                  if (_recognitionStarted) {
-                    await _speechService!.stop();
-                  } else {
-                    await _speechService!.start();
-                  }
-                  setState(() => _recognitionStarted = !_recognitionStarted);
-                },
-                child: Text(
-                  _recognitionStarted
-                      ? 'Stop recognition'
-                      : 'Start recognition',
-                ),
-              ),
-              StreamBuilder(
-                stream: _speechService!.onPartial(),
-                builder: (final context, final snapshot) => Text(
-                  'Partial result: ${snapshot.data}',
-                  style: _textStyle,
-                ),
-              ),
-              StreamBuilder(
-                stream: _speechService!.onResult(),
-                builder: (final context, final snapshot) => Text(
-                  'Result: ${snapshot.data}',
-                  style: _textStyle,
-                ),
-              ),
-            ],
+    body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () async {
+              if (_recognitionStarted) {
+                await _speechService!.stop();
+              } else {
+                await _speechService!.start();
+              }
+              setState(() => _recognitionStarted = !_recognitionStarted);
+            },
+            child: Text(
+              _recognitionStarted ? 'Stop recognition' : 'Start recognition',
+            ),
           ),
-        ),
-      );
+          StreamBuilder(
+            stream: _speechService!.onPartial(),
+            builder: (final context, final snapshot) =>
+                Text('Partial result: ${snapshot.data}', style: _textStyle),
+          ),
+          StreamBuilder(
+            stream: _speechService!.onResult(),
+            builder: (final context, final snapshot) =>
+                Text('Result: ${snapshot.data}', style: _textStyle),
+          ),
+        ],
+      ),
+    ),
+  );
 
   Widget _commonExample() => Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () async {
-                  if (_recognitionStarted) {
-                    await _stopRecording();
-                  } else {
-                    await _recordAudio();
-                  }
-                  setState(() => _recognitionStarted = !_recognitionStarted);
-                },
-                child: Text(
-                  _recognitionStarted ? 'Stop recording' : 'Record audio',
-                ),
-              ),
-              Text(
-                'Final recognition result: $_fileRecognitionResult',
-                style: _textStyle,
-              ),
-            ],
+    body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () async {
+              if (_recognitionStarted) {
+                await _stopRecording();
+              } else {
+                await _recordAudio();
+              }
+              setState(() => _recognitionStarted = !_recognitionStarted);
+            },
+            child: Text(
+              _recognitionStarted ? 'Stop recording' : 'Record audio',
+            ),
           ),
-        ),
-      );
+          Text(
+            'Final recognition result: $_fileRecognitionResult',
+            style: _textStyle,
+          ),
+        ],
+      ),
+    ),
+  );
 
   Future<void> _recordAudio() async {
     try {

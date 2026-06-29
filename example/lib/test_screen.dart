@@ -28,202 +28,189 @@ class _TestScreenState extends State<TestScreen> {
 
   @override
   Widget build(final BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text('Vosk Demo'),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                height: 100,
-                padding: const EdgeInsets.all(5),
-                alignment: Alignment.topLeft,
-                decoration: const BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
+    appBar: AppBar(title: const Text('Vosk Demo')),
+    body: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            height: 100,
+            padding: const EdgeInsets.all(5),
+            alignment: Alignment.topLeft,
+            decoration: const BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+            child: Text(_message, style: const TextStyle(color: Colors.white)),
+          ),
+          const SizedBox(height: 5),
+          Expanded(
+            child: ListView(
+              children: [
+                Text('Model: $_model'),
+                btn('model.create', _modelCreate, color: Colors.orange),
+                const Divider(color: Colors.grey, thickness: 1),
+                Text('Recognizer: $_recognizer'),
+                btn(
+                  'recognizer.create',
+                  _recognizerCreate,
+                  color: Colors.green,
                 ),
-                child: Text(
-                  _message,
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ),
-              const SizedBox(height: 5),
-              Expanded(
-                child: ListView(
+                Row(
                   children: [
-                    Text('Model: $_model'),
-                    btn('model.create', _modelCreate, color: Colors.orange),
-                    const Divider(color: Colors.grey, thickness: 1),
-                    Text('Recognizer: $_recognizer'),
-                    btn(
-                      'recognizer.create',
-                      _recognizerCreate,
-                      color: Colors.green,
-                    ),
-                    Row(
-                      children: [
-                        Flexible(
-                          child: btn(
-                            'recognizer.setMaxAlternatives',
-                            _recognizerSetMaxAlternatives,
-                            color: Colors.green,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Text(
-                            _maxAlternatives.toString(),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Flexible(
-                          child: Slider(
-                            value: _maxAlternatives.toDouble(),
-                            max: 3,
-                            divisions: 3,
-                            onChanged: (final val) => setState(() {
-                              _maxAlternatives = val.toInt();
-                            }),
-                          ),
-                        ),
-                      ],
-                    ),
-                    btn(
-                      'recognizer.setWords',
-                      _recognizerSetWords,
-                      color: Colors.green,
-                    ),
-                    btn(
-                      'recognizer.setPartialWords',
-                      _recognizerSetPartialWords,
-                      color: Colors.green,
-                    ),
-                    Row(
-                      children: [
-                        Flexible(
-                          child: btn(
-                            'recognizer.setGrammar',
-                            _recognizerSetGrammar,
-                            color: Colors.green,
-                          ),
-                        ),
-                        const SizedBox(width: 20),
-                        Flexible(
-                          child: TextField(
-                            style: const TextStyle(color: Colors.black),
-                            controller: TextEditingController(text: _grammar),
-                            onChanged: (final val) => setState(() {
-                              _grammar = val;
-                            }),
-                          ),
-                        ),
-                      ],
-                    ),
-                    btn(
-                      'recognizer.acceptWaveForm',
-                      _recognizerAcceptWaveForm,
-                      color: Colors.green,
-                    ),
-                    btn(
-                      'recognizer.getResult',
-                      _recognizerGetResult,
-                      color: Colors.green,
-                    ),
-                    btn(
-                      'recognizer.getPartialResult',
-                      _recognizerGetPartialResult,
-                      color: Colors.green,
-                    ),
-                    btn(
-                      'recognizer.getFinalResult',
-                      _recognizerGetFinalResult,
-                      color: Colors.green,
-                    ),
-                    btn(
-                      'recognizer.reset',
-                      _recognizerReset,
-                      color: Colors.green,
-                    ),
-                    btn(
-                      'recognizer.close',
-                      _recognizerClose,
-                      color: Colors.green,
-                    ),
-                    const Divider(color: Colors.grey, thickness: 1),
-                    Text('SpeechService: $_speechService'),
-                    btn(
-                      'speechService.init',
-                      _initSpeechService,
-                      color: Colors.lightBlueAccent,
-                    ),
-                    btn(
-                      'speechService.start',
-                      _speechServiceStart,
-                      color: Colors.lightBlueAccent,
-                    ),
-                    btn(
-                      'speechService.stop',
-                      _speechServiceStop,
-                      color: Colors.lightBlueAccent,
-                    ),
-                    btn(
-                      'speechService.setPause',
-                      _speechServiceSetPause,
-                      color: Colors.lightBlueAccent,
-                    ),
-                    btn(
-                      'speechService.reset',
-                      _speechServiceReset,
-                      color: Colors.lightBlueAccent,
-                    ),
-                    btn(
-                      'speechService.cancel',
-                      _speechServiceCancel,
-                      color: Colors.lightBlueAccent,
-                    ),
-                    btn(
-                      'speechService.destroy',
-                      _speechServiceDestroy,
-                      color: Colors.lightBlueAccent,
-                    ),
-                    const SizedBox(height: 20),
-                    if (_speechService != null)
-                      StreamBuilder(
-                        stream: _speechService?.onPartial(),
-                        builder: (final _, final snapshot) =>
-                            Text('Partial: ${snapshot.data}'),
+                    Flexible(
+                      child: btn(
+                        'recognizer.setMaxAlternatives',
+                        _recognizerSetMaxAlternatives,
+                        color: Colors.green,
                       ),
-                    if (_speechService != null)
-                      StreamBuilder(
-                        stream: _speechService?.onResult(),
-                        builder: (final _, final snapshot) =>
-                            Text('Result: ${snapshot.data}'),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        _maxAlternatives.toString(),
+                        textAlign: TextAlign.center,
                       ),
-                    if (_speechService != null)
-                      Text('Recognition error: $_recognitionError'),
+                    ),
+                    Flexible(
+                      child: Slider(
+                        value: _maxAlternatives.toDouble(),
+                        max: 3,
+                        divisions: 3,
+                        onChanged: (final val) => setState(() {
+                          _maxAlternatives = val.toInt();
+                        }),
+                      ),
+                    ),
                   ],
                 ),
-              ),
-            ],
+                btn(
+                  'recognizer.setWords',
+                  _recognizerSetWords,
+                  color: Colors.green,
+                ),
+                btn(
+                  'recognizer.setPartialWords',
+                  _recognizerSetPartialWords,
+                  color: Colors.green,
+                ),
+                Row(
+                  children: [
+                    Flexible(
+                      child: btn(
+                        'recognizer.setGrammar',
+                        _recognizerSetGrammar,
+                        color: Colors.green,
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    Flexible(
+                      child: TextField(
+                        style: const TextStyle(color: Colors.black),
+                        controller: TextEditingController(text: _grammar),
+                        onChanged: (final val) => setState(() {
+                          _grammar = val;
+                        }),
+                      ),
+                    ),
+                  ],
+                ),
+                btn(
+                  'recognizer.acceptWaveForm',
+                  _recognizerAcceptWaveForm,
+                  color: Colors.green,
+                ),
+                btn(
+                  'recognizer.getResult',
+                  _recognizerGetResult,
+                  color: Colors.green,
+                ),
+                btn(
+                  'recognizer.getPartialResult',
+                  _recognizerGetPartialResult,
+                  color: Colors.green,
+                ),
+                btn(
+                  'recognizer.getFinalResult',
+                  _recognizerGetFinalResult,
+                  color: Colors.green,
+                ),
+                btn('recognizer.reset', _recognizerReset, color: Colors.green),
+                btn('recognizer.close', _recognizerClose, color: Colors.green),
+                const Divider(color: Colors.grey, thickness: 1),
+                Text('SpeechService: $_speechService'),
+                btn(
+                  'speechService.init',
+                  _initSpeechService,
+                  color: Colors.lightBlueAccent,
+                ),
+                btn(
+                  'speechService.start',
+                  _speechServiceStart,
+                  color: Colors.lightBlueAccent,
+                ),
+                btn(
+                  'speechService.stop',
+                  _speechServiceStop,
+                  color: Colors.lightBlueAccent,
+                ),
+                btn(
+                  'speechService.setPause',
+                  _speechServiceSetPause,
+                  color: Colors.lightBlueAccent,
+                ),
+                btn(
+                  'speechService.reset',
+                  _speechServiceReset,
+                  color: Colors.lightBlueAccent,
+                ),
+                btn(
+                  'speechService.cancel',
+                  _speechServiceCancel,
+                  color: Colors.lightBlueAccent,
+                ),
+                btn(
+                  'speechService.destroy',
+                  _speechServiceDestroy,
+                  color: Colors.lightBlueAccent,
+                ),
+                const SizedBox(height: 20),
+                if (_speechService != null)
+                  StreamBuilder(
+                    stream: _speechService?.onPartial(),
+                    builder: (final _, final snapshot) =>
+                        Text('Partial: ${snapshot.data}'),
+                  ),
+                if (_speechService != null)
+                  StreamBuilder(
+                    stream: _speechService?.onResult(),
+                    builder: (final _, final snapshot) =>
+                        Text('Result: ${snapshot.data}'),
+                  ),
+                if (_speechService != null)
+                  Text('Recognition error: $_recognitionError'),
+              ],
+            ),
           ),
-        ),
-      );
+        ],
+      ),
+    ),
+  );
 
   Widget btn(
     final String text,
     final VoidCallback onPressed, {
     final Color? color,
-  }) =>
-      ElevatedButton(
-        onPressed: onPressed,
-        style: ButtonStyle(backgroundColor: WidgetStateProperty.all(color)),
-        child: Text(text),
-      );
+  }) => ElevatedButton(
+    onPressed: onPressed,
+    style: ButtonStyle(backgroundColor: WidgetStateProperty.all(color)),
+    child: Text(text),
+  );
 
-  void _toastFutureError(final Future<Object?> future) => future
-      .onError((final error, final _) => _showMessage(msg: error.toString()));
+  void _toastFutureError(final Future<Object?> future) => future.onError(
+    (final error, final _) => _showMessage(msg: error.toString()),
+  );
 
   Future<void> _modelCreate() async {
     if (_model != null) {
@@ -308,9 +295,9 @@ class _TestScreenState extends State<TestScreen> {
     _toastFutureError(
       localRecognizer
           .acceptWaveformBytes(
-            (await rootBundle.load('assets/audio/test.wav'))
-                .buffer
-                .asUint8List(),
+            (await rootBundle.load(
+              'assets/audio/test.wav',
+            )).buffer.asUint8List(),
           )
           .then((final value) => _showMessage(msg: value.toString())),
     );
@@ -324,9 +311,9 @@ class _TestScreenState extends State<TestScreen> {
     }
 
     _toastFutureError(
-      localRecognizer
-          .getResult()
-          .then((final value) => _showMessage(msg: value)),
+      localRecognizer.getResult().then(
+        (final value) => _showMessage(msg: value),
+      ),
     );
   }
 
@@ -338,9 +325,9 @@ class _TestScreenState extends State<TestScreen> {
     }
 
     _toastFutureError(
-      localRecognizer
-          .getPartialResult()
-          .then((final value) => _showMessage(msg: value)),
+      localRecognizer.getPartialResult().then(
+        (final value) => _showMessage(msg: value),
+      ),
     );
   }
 
@@ -352,9 +339,9 @@ class _TestScreenState extends State<TestScreen> {
     }
 
     _toastFutureError(
-      localRecognizer
-          .getFinalResult()
-          .then((final value) => _showMessage(msg: value)),
+      localRecognizer.getFinalResult().then(
+        (final value) => _showMessage(msg: value),
+      ),
     );
   }
 
@@ -419,9 +406,9 @@ class _TestScreenState extends State<TestScreen> {
     }
 
     _toastFutureError(
-      localSpeechService
-          .stop()
-          .then((final value) => _showMessage(msg: value.toString())),
+      localSpeechService.stop().then(
+        (final value) => _showMessage(msg: value.toString()),
+      ),
     );
   }
 
@@ -453,9 +440,9 @@ class _TestScreenState extends State<TestScreen> {
     }
 
     _toastFutureError(
-      localSpeechService
-          .cancel()
-          .then((final value) => _showMessage(msg: value.toString())),
+      localSpeechService.cancel().then(
+        (final value) => _showMessage(msg: value.toString()),
+      ),
     );
   }
 
@@ -467,9 +454,9 @@ class _TestScreenState extends State<TestScreen> {
     }
 
     _toastFutureError(
-      localSpeechService
-          .dispose()
-          .then((final value) => setState(() => _speechService = null)),
+      localSpeechService.dispose().then(
+        (final value) => setState(() => _speechService = null),
+      ),
     );
   }
 

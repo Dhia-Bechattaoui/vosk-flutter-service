@@ -18,22 +18,25 @@ void main() {
 
   setUpAll(() async {
     vosk = VoskFlutterPlugin.instance();
-    enSmallModelPath = await ModelLoader()
-        .loadFromAssets('assets/models/vosk-model-small-en-us-0.15.zip');
+    enSmallModelPath = await ModelLoader().loadFromAssets(
+      'assets/models/vosk-model-small-en-us-0.15.zip',
+    );
   });
 
   group('VoskFlutterPlugin', () {
-    test('Creates a speech service using a recognizer and destroys it',
-        () async {
-      final model = await vosk.createModel(enSmallModelPath);
-      final recognizer = await vosk.createRecognizer(
-        model: model,
-        sampleRate: sampleRate,
-      );
+    test(
+      'Creates a speech service using a recognizer and destroys it',
+      () async {
+        final model = await vosk.createModel(enSmallModelPath);
+        final recognizer = await vosk.createRecognizer(
+          model: model,
+          sampleRate: sampleRate,
+        );
 
-      final speechService = await vosk.initSpeechService(recognizer);
-      expect(speechService.dispose(), completes);
-    });
+        final speechService = await vosk.initSpeechService(recognizer);
+        expect(speechService.dispose(), completes);
+      },
+    );
   });
 
   group('SpeechService', () {

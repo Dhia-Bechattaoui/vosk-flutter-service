@@ -15,8 +15,9 @@ void main() {
 
   setUpAll(() async {
     vosk = VoskFlutterPlugin.instance();
-    enSmallModelPath = await ModelLoader()
-        .loadFromAssets('assets/models/vosk-model-small-en-us-0.15.zip');
+    enSmallModelPath = await ModelLoader().loadFromAssets(
+      'assets/models/vosk-model-small-en-us-0.15.zip',
+    );
   });
 
   group('VoskFlutterPlugin', () {
@@ -27,11 +28,13 @@ void main() {
       );
     });
 
-    test('Creates a model from the data located on the specified path',
-        () async {
-      final model = await vosk.createModel(enSmallModelPath);
-      expect(model.path, equals(enSmallModelPath));
-    });
+    test(
+      'Creates a model from the data located on the specified path',
+      () async {
+        final model = await vosk.createModel(enSmallModelPath);
+        expect(model.path, equals(enSmallModelPath));
+      },
+    );
 
     test('Creates a recognizer using a model', () async {
       final model = await vosk.createModel(enSmallModelPath);
@@ -50,8 +53,9 @@ void main() {
 
     setUpAll(() async {
       model = await vosk.createModel(enSmallModelPath);
-      audioBytes =
-          (await rootBundle.load('assets/audio/test.wav')).buffer.asUint8List();
+      audioBytes = (await rootBundle.load(
+        'assets/audio/test.wav',
+      )).buffer.asUint8List();
     });
 
     setUp(() async {
@@ -122,13 +126,15 @@ void main() {
       expectEqualRecognitionResults(constructorResults, setGrammarResults);
     });
 
-    test('Returns results with alternatives when #setMaxAlternatives used',
-        () async {
-      await recognizer.setMaxAlternatives(2);
-      final results = await recognizeAudio(audioBytes, recognizer);
+    test(
+      'Returns results with alternatives when #setMaxAlternatives used',
+      () async {
+        await recognizer.setMaxAlternatives(2);
+        final results = await recognizeAudio(audioBytes, recognizer);
 
-      expect(results[0], contains('alternatives'));
-    });
+        expect(results[0], contains('alternatives'));
+      },
+    );
 
     test('Returns results with words when #setWords used', () async {
       await recognizer.setWords(words: true);
@@ -137,14 +143,16 @@ void main() {
       expect(results[0], contains('word'));
     });
 
-    test('Returns partial results with words when #setPartialWords used',
-        () async {
-      await recognizer.setPartialWords(partialWords: true);
-      await recognizer.acceptWaveformBytes(audioBytes);
-      final partialResult = await recognizer.getPartialResult();
+    test(
+      'Returns partial results with words when #setPartialWords used',
+      () async {
+        await recognizer.setPartialWords(partialWords: true);
+        await recognizer.acceptWaveformBytes(audioBytes);
+        final partialResult = await recognizer.getPartialResult();
 
-      expect(partialResult, contains('word'));
-    });
+        expect(partialResult, contains('word'));
+      },
+    );
 
     test('Resets results when #reset used', () async {
       await recognizer.acceptWaveformBytes(audioBytes);
