@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [0.1.2] - 2026-06-25
+
+### Added
+- `.agents` folder containing AI agent configuration (rules and workflows).
+- `plan.md` file at the root to track project tasks and milestones.
+
+### Fixed
+- **iOS Swift Package Manager (SPM) Compatibility**: Restructured the iOS package to provide native SPM support by adding a dedicated `VoskAPI` C-wrapper target for `vosk.xcframework` headers. This resolves the `mixed language source files` and `Cannot find 'vosk_model_new' in scope` compilation errors on modern Flutter versions.
 
 
 ## [0.1.1] - 2026-04-07

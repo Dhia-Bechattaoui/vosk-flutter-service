@@ -105,3 +105,7 @@ await speechService.start();
 ```
 #### Linux & Windows
 Use any suitable plugin to get the microphone input and [pass it to a recognizer](#recognize-audio-data)
+
+## AI Assistant Configuration
+
+This project includes an `.agents` folder containing configuration files (such as `rules/AGENTS.md` and `workflows/workflow.md`) designed to help AI coding assistants follow project-specific guidelines and workflows. A `plan.md` file is also available at the project root to track ongoing tasks and milestones.

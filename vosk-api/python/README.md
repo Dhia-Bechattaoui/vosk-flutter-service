@@ -21,5 +21,5 @@ big clusters.
 # Documentation
 
 For installation instructions, examples and documentation visit [Vosk
-Website](https://alphacephei.com/vosk). See also our project on
-[Github](https://github.com/alphacep/vosk-api).
+Website](https://bechattaoui.dev/vosk). See also our project on
+[Github](https://github.com/dhia-bechattaoui/vosk-api).

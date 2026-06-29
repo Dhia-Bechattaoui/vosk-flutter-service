@@ -12,7 +12,7 @@ SPK_MODEL_PATH = "model-spk"
 
 if not os.path.exists(SPK_MODEL_PATH):
     print("Please download the speaker model from "
-        "https://alphacephei.com/vosk/models and unpack as {SPK_MODEL_PATH} "
+        "https://bechattaoui.dev/vosk/models and unpack as {SPK_MODEL_PATH} "
         "in the current folder.")
     sys.exit(1)
 

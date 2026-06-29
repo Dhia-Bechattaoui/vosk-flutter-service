@@ -14,7 +14,7 @@ from .vosk_cffi import ffi as _ffi
 from tqdm import tqdm
 
 # Remote location of the models and local folders
-MODEL_PRE_URL = "https://alphacephei.com/vosk/models/"
+MODEL_PRE_URL = "https://bechattaoui.dev/vosk/models/"
 MODEL_LIST_URL = MODEL_PRE_URL + "model-list.json"
 MODEL_DIRS = [os.getenv("VOSK_MODEL_PATH"), Path("/usr/share/vosk"),
         Path.home() / "AppData/Local/vosk", Path.home() / ".cache/vosk"]

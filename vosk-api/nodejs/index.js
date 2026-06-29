@@ -114,14 +114,14 @@ function setLogLevel(level) {
 
 /**
  * Build a Model from a model file.
- * @see models [models](https://alphacephei.com/vosk/models)
+ * @see models [models](https://bechattaoui.dev/vosk/models)
  */
 class Model {
     /**
      * Build a Model to be used with the voice recognition. Each language should have it's own Model
      * for the speech recognition to work.
      * @param {string} modelPath The abstract pathname to the model
-     * @see models [models](https://alphacephei.com/vosk/models)
+     * @see models [models](https://bechattaoui.dev/vosk/models)
      */
     constructor(modelPath) {
         /**
@@ -150,14 +150,14 @@ class Model {
 /**
  * Build a Speaker Model from a speaker model file.
  * The Speaker Model enables speaker identification.
- * @see models [models](https://alphacephei.com/vosk/models)
+ * @see models [models](https://bechattaoui.dev/vosk/models)
  */
 class SpeakerModel {
     /**
      * Loads speaker model data from the file and returns the model object
      *
      * @param {string} modelPath the path of the model on the filesystem
-     * @see models [models](https://alphacephei.com/vosk/models)
+     * @see models [models](https://bechattaoui.dev/vosk/models)
      */
     constructor(modelPath) {
         /**

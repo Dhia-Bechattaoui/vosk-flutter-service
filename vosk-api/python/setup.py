@@ -47,11 +47,11 @@ setuptools.setup(
     name="vosk",
     version="0.3.75",
     author="Alpha Cephei Inc",
-    author_email="contact@alphacephei.com",
+    author_email="contact@bechattaoui.dev",
     description="Offline open source speech recognition API based on Kaldi and Vosk",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/alphacep/vosk-api",
+    url="https://github.com/dhia-bechattaoui/vosk-api",
     packages=setuptools.find_packages(),
     package_data = {'vosk': ['*.so', '*.dll', '*.dyld']},
     entry_points = {

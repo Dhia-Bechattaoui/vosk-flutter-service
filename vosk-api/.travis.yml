@@ -6,7 +6,7 @@ matrix:
     - sudo: required
       services:
         - docker
-      env: DOCKER_IMAGE=alphacep/kaldi-manylinux:latest
+      env: DOCKER_IMAGE=dhia-bechattaoui/kaldi-manylinux:latest
 
 install:
   - docker pull $DOCKER_IMAGE

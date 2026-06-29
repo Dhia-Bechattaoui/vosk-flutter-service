@@ -30,7 +30,7 @@ subprojects {
 
     mavenPublishing {
         pom {
-            url = 'http://www.alphacephei.com.com/vosk/'
+            url = 'http://www.bechattaoui.dev.com/vosk/'
             licenses {
                 license {
                     name = 'The Apache License, Version 2.0'
@@ -41,12 +41,12 @@ subprojects {
                 developer {
                     id = 'com.alphacephei'
                     name = 'Alpha Cephei Inc'
-                    email = 'contact@alphacephei.com'
+                    email = 'contact@bechattaoui.dev'
                 }
             }
             scm {
-                connection = 'scm:git:git://github.com/alphacep/vosk-api.git'
-                url = 'https://github.com/alphacep/vosk-api/'
+                connection = 'scm:git:git://github.com/dhia-bechattaoui/vosk-api.git'
+                url = 'https://github.com/dhia-bechattaoui/vosk-api/'
             }
         }
     }

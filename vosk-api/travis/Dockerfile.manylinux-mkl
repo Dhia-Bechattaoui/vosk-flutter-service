@@ -1,7 +1,7 @@
 FROM quay.io/pypa/manylinux2010_x86_64
 
 LABEL description="A docker image for building portable Python linux binary wheels and Kaldi"
-LABEL maintainer="contact@alphacephei.com"
+LABEL maintainer="contact@bechattaoui.dev"
 
 RUN yum -y update && yum -y install \
     devtoolset-8-libatomic-devel \
@@ -14,11 +14,11 @@ RUN yum -y update && yum -y install \
     && yum clean all
 
 RUN cd /opt \
-    && git clone -b vosk --single-branch https://github.com/alphacep/kaldi \
+    && git clone -b vosk --single-branch https://github.com/dhia-bechattaoui/kaldi \
     && cd /opt/kaldi/tools \
     && ./extras/install_mkl.sh \
     && cd /opt/kaldi/tools \
-    && git clone --single-branch https://github.com/alphacep/openfst openfst \
+    && git clone --single-branch https://github.com/dhia-bechattaoui/openfst openfst \
     && cd openfst \
     && autoreconf -i \
     && CFLAGS="-g -O3" ./configure --prefix=/opt/kaldi/tools/openfst --enable-static --enable-shared --enable-far --enable-ngram-fsts --enable-lookahead-fsts --with-pic --disable-bin \

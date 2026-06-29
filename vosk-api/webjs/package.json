@@ -4,7 +4,7 @@
   "description": "Node binding for continuous voice recoginition through vosk-api.",
   "repository": {
     "type": "git",
-    "url": "git://github.com/alphacep/vosk-api.git"
+    "url": "git://github.com/dhia-bechattaoui/vosk-api.git"
   },
   "main": "index.js",
   "keywords": [

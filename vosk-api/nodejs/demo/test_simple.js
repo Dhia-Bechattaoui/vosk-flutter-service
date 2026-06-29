@@ -8,7 +8,7 @@ MODEL_PATH = "model"
 FILE_NAME = "test.wav"
 
 if (!fs.existsSync(MODEL_PATH)) {
-    console.log("Please download the model from https://alphacephei.com/vosk/models and unpack as " + MODEL_PATH + " in the current folder.")
+    console.log("Please download the model from https://bechattaoui.dev/vosk/models and unpack as " + MODEL_PATH + " in the current folder.")
     process.exit()
 }
 

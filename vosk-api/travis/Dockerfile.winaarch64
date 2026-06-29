@@ -33,7 +33,7 @@ RUN cd /opt && \
 ENV PATH="$PATH:/opt/llvm-mingw/bin"
 
 RUN mkdir /opt/kaldi \
-    && git clone https://github.com/alphacep/openfst \
+    && git clone https://github.com/dhia-bechattaoui/openfst \
     && cd openfst \
     && autoreconf -i \
     && CXX=aarch64-w64-mingw32-g++ CXXFLAGS="-O3 -ftree-vectorize -DFST_NO_DYNAMIC_LINKING" \
@@ -50,7 +50,7 @@ RUN cd /opt/kaldi \
     && make PREFIX=/opt/kaldi/local install
 
 RUN cd /opt/kaldi \
-    && git clone -b v3.2.1  --single-branch https://github.com/alphacep/clapack \
+    && git clone -b v3.2.1  --single-branch https://github.com/dhia-bechattaoui/clapack \
     && mkdir clapack/BUILD \
     && cd clapack/BUILD \
     && cmake -DCMAKE_C_COMPILER_TARGET=aarch64-w64-mingw32 -DCMAKE_C_COMPILER=aarch64-w64-mingw32-gcc -DCMAKE_SYSTEM_NAME=Windows -DCMAKE_CROSSCOMPILING=True .. \
@@ -60,7 +60,7 @@ RUN cd /opt/kaldi \
     && find . -name *.a -exec cp {} /opt/kaldi/local/lib \;
 
 RUN cd /opt/kaldi \
-    && git clone -b vosk-android --single-branch https://github.com/alphacep/kaldi \
+    && git clone -b vosk-android --single-branch https://github.com/dhia-bechattaoui/kaldi \
     && cd kaldi/src \
     && CXX=aarch64-w64-mingw32-g++ CXXFLAGS="-O3 -ftree-vectorize -DFST_NO_DYNAMIC_LINKING" ./configure --shared --mingw=yes --use-cuda=no \
         --mathlib=OPENBLAS_CLAPACK \

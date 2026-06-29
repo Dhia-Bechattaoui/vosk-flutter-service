@@ -29,7 +29,7 @@ To build this project, follow the following steps.
 1. Install `libvosk`.
 This can be done from [source][source install] (parent monorepo) 
 or [downloaded][download].
-2. Download a [Vosk model](https://alphacephei.com/vosk/models) to use.
+2. Download a [Vosk model](https://bechattaoui.dev/vosk/models) to use.
   - It is suggested to use a small model to speed up tests.
 3. Once both are downloaded and placed into a proper location (hopefully following UNIX specification).
 Set the following environment variables:
@@ -59,5 +59,5 @@ It is suggested to run `cinteropLibvoskNative` to generate the Kotlin C bindings
 - Possibly target Kotlin/JS
 - Possibly target Kotlin/Objective-C (?)
 
-[source install]: https://alphacephei.com/vosk/install
-[download]: https://github.com/alphacep/vosk-api/releases/latest
+[source install]: https://bechattaoui.dev/vosk/install
+[download]: https://github.com/dhia-bechattaoui/vosk-api/releases/latest

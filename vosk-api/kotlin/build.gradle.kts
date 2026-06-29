@@ -120,7 +120,7 @@ kotlin {
 			withType<MavenPublication> {
 				artifact(javadocJar)
 				pom {
-					url.set("http://www.alphacephei.com.com/vosk/")
+					url.set("http://www.bechattaoui.dev.com/vosk/")
 					licenses {
 						license {
 							name.set("The Apache License, Version 2.0")
@@ -131,12 +131,12 @@ kotlin {
 						developer {
 							id.set("com.alphacephei")
 							name.set("Alpha Cephei Inc")
-							email.set("contact@alphacephei.com")
+							email.set("contact@bechattaoui.dev")
 						}
 					}
 					scm {
-						connection.set("scm:git:git://github.com/alphacep/vosk-api.git")
-						url.set("https://github.com/alphacep/vosk-api/")
+						connection.set("scm:git:git://github.com/dhia-bechattaoui/vosk-api.git")
+						url.set("https://github.com/dhia-bechattaoui/vosk-api/")
 					}
 				}
 			}

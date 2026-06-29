@@ -3,7 +3,7 @@ set -e -x
 
 # Build so file
 cd /opt
-git clone https://github.com/alphacep/vosk-api
+git clone https://github.com/dhia-bechattaoui/vosk-api
 cd /opt/vosk-api/src
 KALDI_ROOT=/opt/kaldi EXTRA_LDFLAGS="-latomic" make -j $(nproc)
 

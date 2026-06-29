@@ -3,7 +3,7 @@ set -e -x
 
 # Build libvosk
 cd /opt
-git clone https://github.com/alphacep/vosk-api
+git clone https://github.com/dhia-bechattaoui/vosk-api
 cd vosk-api/src
 EXTRA_LDFLAGS=-Wl,--out-implib,libvosk.lib CXX=x86_64-w64-mingw32-g++-posix EXT=dll KALDI_ROOT=/opt/kaldi/kaldi OPENFST_ROOT=/opt/kaldi/local OPENBLAS_ROOT=/opt/kaldi/local make -j $(nproc)
 

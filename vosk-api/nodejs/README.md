@@ -4,7 +4,7 @@ This is an FFI-NAPI wrapper for the Vosk library.
 
 Bindings mostly follow Vosk interface, some methods are not yet fully implemented.
 
-See [demo folder](https://github.com/alphacep/vosk-api/tree/master/nodejs/demo) for
+See [demo folder](https://github.com/dhia-bechattaoui/vosk-api/tree/master/nodejs/demo) for
 details.
 
 ## About
@@ -30,5 +30,5 @@ big clusters.
 # Documentation
 
 For installation instructions, examples and documentation visit [Vosk
-Website](https://alphacephei.com/vosk). See also our project on
-[Github](https://github.com/alphacep/vosk-api).
+Website](https://bechattaoui.dev/vosk). See also our project on
+[Github](https://github.com/dhia-bechattaoui/vosk-api).

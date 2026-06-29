@@ -90,7 +90,7 @@ make -C OpenBLAS install PREFIX=$WORKDIR/local
 
 # CLAPACK
 cd $WORKDIR
-git clone -b v3.2.1  --single-branch https://github.com/alphacep/clapack
+git clone -b v3.2.1  --single-branch https://github.com/dhia-bechattaoui/clapack
 mkdir -p clapack/BUILD && cd clapack/BUILD
 cmake -DCMAKE_C_FLAGS="$ARCHFLAGS" -DCMAKE_C_COMPILER_TARGET=$HOST \
     -DCMAKE_C_COMPILER=$CC -DCMAKE_SYSTEM_NAME=Generic -DCMAKE_AR=$ANDROID_TOOLCHAIN_PATH/bin/$AR \
@@ -103,7 +103,7 @@ find . -name "*.a" | xargs cp -t $WORKDIR/local/lib
 
 # tools directory --> we'll only compile OpenFST
 cd $WORKDIR
-git clone https://github.com/alphacep/openfst
+git clone https://github.com/dhia-bechattaoui/openfst
 cd openfst
 autoreconf -i
 CXX=$CXX CXXFLAGS="$ARCHFLAGS -O3 -DFST_NO_DYNAMIC_LINKING" ./configure --prefix=${WORKDIR}/local \
@@ -114,7 +114,7 @@ make install
 
 # Kaldi itself
 cd $WORKDIR
-git clone -b vosk-android --single-branch https://github.com/alphacep/kaldi
+git clone -b vosk-android --single-branch https://github.com/dhia-bechattaoui/kaldi
 cd $WORKDIR/kaldi/src
 CXX=$CXX AR=$AR RANLIB=$RANLIB CXXFLAGS="$ARCHFLAGS -O3 -DFST_NO_DYNAMIC_LINKING" ./configure --use-cuda=no \
     --mathlib=OPENBLAS_CLAPACK --shared \
