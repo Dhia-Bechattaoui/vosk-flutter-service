@@ -4,7 +4,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 
-import '../vosk_flutter.dart';
+import '../vosk_flutter_service.dart';
 import 'generated_vosk_bindings.dart';
 import 'utils.dart';
 

@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:record/record.dart';
-import 'package:vosk_flutter_service/vosk_flutter.dart';
+import 'package:vosk_flutter_service/vosk_flutter_service.dart';
 
 void main() {
   runApp(const MyApp());

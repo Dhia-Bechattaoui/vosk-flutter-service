@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:vosk_flutter_service/vosk_flutter.dart';
+import 'package:vosk_flutter_service/vosk_flutter_service.dart';
 
 const modelAsset = 'assets/models/vosk-model-small-en-us-0.15.zip';
 

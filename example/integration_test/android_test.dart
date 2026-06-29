@@ -3,7 +3,7 @@ library android_test;
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:vosk_flutter_service/vosk_flutter.dart';
+import 'package:vosk_flutter_service/vosk_flutter_service.dart';
 
 import 'common_test.dart' as common_test;
 

@@ -5,7 +5,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import '../vosk_flutter.dart';
+import '../vosk_flutter_service.dart';
 import 'ffi_provider.dart';
 import 'generated_vosk_bindings.dart';
 import 'permission_service.dart';
