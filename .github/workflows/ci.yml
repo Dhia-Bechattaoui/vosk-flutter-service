@@ -59,7 +59,7 @@ jobs:
           fi
 
       - name: Create and push version tag
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
         run: |
           VERSION=$(grep '^version: ' pubspec.yaml | awk '{print $2}')
           TAG="v$VERSION"
