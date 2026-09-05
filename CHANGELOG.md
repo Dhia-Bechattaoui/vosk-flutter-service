@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.3] - 2026-09-05
 
 ### Changed
-- **Dependencies**: Upgraded `permission_handler` to `^13.0.0` to resolve dependency conflicts with modern Flutter audio packages while maintaining SDK compatibility with Dart >=3.8.0.
+- **Environment & Dependencies**: Upgraded Dart SDK to `>=3.11.0 <4.0.0` and Flutter to `>=3.47.0`. Upgraded `permission_handler` to `^13.0.0`, `package_config` to `^3.0.0`, `ffigen` to `^21.0.0`, and `very_good_analysis` to `^11.0.0`.
 - **Android**: Updated `compileSdk` to `36` and Java compilation to `JavaVersion.VERSION_17` to ensure full compatibility with modern Android Gradle Plugin (AGP 8/9) and latest AndroidX libraries.
 - Synchronized version `0.1.3` across `pubspec.yaml` and platform podspec files.
 - **Quality & Lints**: Resolved analyzer and lint warnings across the codebase, ensuring strict type safety and a clean pana score.

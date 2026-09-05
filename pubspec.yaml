@@ -15,8 +15,8 @@ topics:
   - audio-processing
 
 environment:
-  sdk: ">=3.8.0 <4.0.0"
-  flutter: ">=3.32.0"
+  sdk: ">=3.11.0 <4.0.0"
+  flutter: ">=3.47.0"
 
 dependencies:
   archive: ^4.0.0
@@ -28,7 +28,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   http: ^1.2.2
-  package_config: ^2.1.0
+  package_config: ^3.0.0
   path: ^1.9.0
   path_provider: ^2.1.4
   permission_handler: ^13.0.0
@@ -37,13 +37,13 @@ dependencies:
 dev_dependencies:
   build_cli: ^2.2.3
   build_runner: ^2.4.12
-  ffigen: ^20.0.0
+  ffigen: ^21.0.0
   flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
   mockito: ^5.4.4
   mocktail: ^1.0.4
-  very_good_analysis: ^10.0.0
+  very_good_analysis: ^11.0.0
 
 ffigen:
   name: VoskLibrary
