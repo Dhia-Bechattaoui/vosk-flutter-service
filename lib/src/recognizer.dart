@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'ffi_provider.dart';
 import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 
 import '../vosk_flutter_service.dart';
+import 'ffi_provider.dart';
 import 'generated_vosk_bindings.dart';
 import 'utils.dart';
 

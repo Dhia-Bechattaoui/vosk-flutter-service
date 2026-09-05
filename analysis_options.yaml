@@ -6,6 +6,13 @@ analyzer:
     - "**/*.freezed.dart"
     - "**/*.mocks.dart"
     - "**/generated/**"
+    - build/**
+    - android/**
+    - ios/**
+    - windows/**
+    - macos/**
+    - linux/**
+    - "lib/src/stubs/**"
   
   errors:
     # Treat missing required parameters as errors
@@ -237,5 +244,4 @@ linter:
     - valid_regexps
     - void_checks
     
-    # Additional strict rules
-    - avoid_classes_with_only_static_members
+

@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'ffi_provider.dart';
 import 'dart:typed_data';
+
+import 'ffi_provider.dart';
 
 /// FFI related string utils.
 extension FFIStringUtils on String {
@@ -15,7 +16,7 @@ extension FFIIntListUtils on List<int> {
   Pointer<Char> toCharPtr(final Allocator allocator) {
     final nativeLength = length + 1;
     final result = allocator<Uint8>(nativeLength);
-    result.asTypedList(nativeLength)
+    (result.asTypedList(nativeLength) as List<int>)
       ..setAll(0, this) // copy
       ..last = 0; // zero terminate
     return result.cast();
@@ -28,7 +29,7 @@ extension FFIFloatListUtils on Float32List {
   Pointer<Float> toFloatPtr(final Allocator allocator) {
     final nativeSize = length + 1;
     final result = allocator<Float>(nativeSize);
-    result.asTypedList(nativeSize)
+    (result.asTypedList(nativeSize) as List<double>)
       ..setAll(0, this) // copy
       ..last = 0; // zero terminate
     return result.cast();
@@ -51,7 +52,7 @@ extension FFICharPointerUtils on Pointer<Char> {
 
   static int _length(final Pointer<Uint8> codeUnits) {
     var length = 0;
-    while ((codeUnits[length] as dynamic) != 0) {
+    while ((codeUnits[length] as Object) != 0) {
       length++;
     }
     return length;

@@ -6,6 +6,10 @@ analyzer:
     - "**/*.freezed.dart"
     - "**/*.mocks.dart"
     - "**/generated/**"
+    - build/**
+    - android/**
+    - windows/**
+    - linux/**
   
   errors:
     # Treat missing required parameters as errors

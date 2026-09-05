@@ -13,8 +13,8 @@ extension PermissionStatusGetters on PermissionStatus {
 }
 
 class Permission {
-  static const microphone = Permission._();
   const Permission._();
+  static const microphone = Permission._();
   Future<PermissionStatus> get status async => PermissionStatus.denied;
   Future<PermissionStatus> request() async => PermissionStatus.denied;
 }

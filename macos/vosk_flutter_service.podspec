@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'vosk_flutter_service'
-  s.version          = '0.1.1'
+  s.version          = '0.1.3'
   s.summary          = 'Flutter plugin for offline speech recognition using the Vosk speech recognition toolkit.'
   s.description      = <<-DESC
 Flutter plugin for offline speech recognition using the Vosk speech recognition toolkit.

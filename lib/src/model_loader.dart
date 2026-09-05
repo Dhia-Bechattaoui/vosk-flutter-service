@@ -1,13 +1,14 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'stubs/io_stub.dart' if (dart.library.io) 'dart:io';
-import 'package:flutter/foundation.dart';
 
-import 'stubs/archive_stub.dart'
-    if (dart.library.io) 'package:archive/archive_io.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
+
+import 'stubs/archive_stub.dart'
+    if (dart.library.io) 'package:archive/archive_io.dart';
+import 'stubs/io_stub.dart' if (dart.library.io) 'dart:io';
 import 'stubs/path_provider_stub.dart'
     if (dart.library.io) 'package:path_provider/path_provider.dart';
 
@@ -146,7 +147,7 @@ class ModelLoader {
         (await getApplicationDocumentsDirectory()).path,
         'models',
       );
-    } catch (e) {
+    } on Object {
       // Fallback for web or when path_provider fails
       return 'models';
     }

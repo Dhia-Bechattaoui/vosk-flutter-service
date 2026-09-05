@@ -1,6 +1,6 @@
-import 'ffi_provider.dart';
-
 import 'package:flutter/services.dart';
+
+import 'ffi_provider.dart';
 import 'generated_vosk_bindings.dart';
 import 'vosk_flutter.dart';
 

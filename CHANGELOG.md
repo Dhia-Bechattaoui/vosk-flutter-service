@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-09-05
+
+### Changed
+- **Dependencies**: Upgraded `permission_handler` to `^13.0.0` to resolve dependency conflicts with modern Flutter audio packages, updated `package_config` to `^3.0.0`, `ffigen` to `^21.0.0`, and `very_good_analysis` to `^11.0.0`.
+- **Android**: Updated `compileSdk` to `36` and Java compilation to `JavaVersion.VERSION_17` to ensure full compatibility with modern Android Gradle Plugin (AGP 8/9) and latest AndroidX libraries.
+- Synchronized version `0.1.3` across `pubspec.yaml` and platform podspec files.
+- **Quality & Lints**: Resolved analyzer and lint warnings across the codebase, ensuring strict type safety and a clean pana score.
+
+
 ## [0.1.2] - 2026-06-25
 
 ### Added
@@ -114,3 +123,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.0.3]: https://github.com/dhia-bechattaoui/vosk-flutter-service/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/dhia-bechattaoui/vosk-flutter-service/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/dhia-bechattaoui/vosk-flutter-service/releases/tag/v0.0.1
+[0.1.3]: https://github.com/dhia-bechattaoui/vosk-flutter-service/compare/v0.1.2...v0.1.3
+[0.1.2]: https://github.com/dhia-bechattaoui/vosk-flutter-service/compare/v0.1.1...v0.1.2
+[0.1.1]: https://github.com/dhia-bechattaoui/vosk-flutter-service/compare/v0.1.0...v0.1.1

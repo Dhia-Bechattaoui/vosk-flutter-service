@@ -9,17 +9,17 @@ class Platform {
 }
 
 class Directory {
-  final String path;
   Directory(this.path);
+  final String path;
   bool existsSync() => false;
-  void createSync({bool recursive = false}) {}
+  void createSync({final bool recursive = false}) {}
   static Directory get current => Directory('');
 }
 
 class File {
-  final String path;
   File(this.path);
+  final String path;
   bool existsSync() => false;
-  void writeAsBytesSync(List<int> bytes) {}
+  void writeAsBytesSync(final List<int> bytes) {}
   List<int> readAsBytesSync() => [];
 }
