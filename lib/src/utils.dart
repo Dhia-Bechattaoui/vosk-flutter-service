@@ -6,14 +6,14 @@ import 'ffi_provider.dart';
 /// FFI related string utils.
 extension FFIStringUtils on String {
   /// Convert to a [Char] pointer. [allocator] is used for memory allocation.
-  Pointer<Char> toCharPtr(final Allocator allocator) =>
+  Pointer<Char> toCharPtr(Allocator allocator) =>
       utf8.encode(this).toCharPtr(allocator);
 }
 
 /// FFI related int list utils.
 extension FFIIntListUtils on List<int> {
   /// Convert to a [Char] pointer. [allocator] is used for memory allocation.
-  Pointer<Char> toCharPtr(final Allocator allocator) {
+  Pointer<Char> toCharPtr(Allocator allocator) {
     final nativeLength = length + 1;
     final result = allocator<Uint8>(nativeLength);
     (result.asTypedList(nativeLength) as List<int>)
@@ -26,7 +26,7 @@ extension FFIIntListUtils on List<int> {
 /// FFI related float list utils.
 extension FFIFloatListUtils on Float32List {
   /// Convert to a [Float] pointer. [allocator] is used for memory allocation.
-  Pointer<Float> toFloatPtr(final Allocator allocator) {
+  Pointer<Float> toFloatPtr(Allocator allocator) {
     final nativeSize = length + 1;
     final result = allocator<Float>(nativeSize);
     (result.asTypedList(nativeSize) as List<double>)
@@ -50,7 +50,7 @@ extension FFICharPointerUtils on Pointer<Char> {
     );
   }
 
-  static int _length(final Pointer<Uint8> codeUnits) {
+  static int _length(Pointer<Uint8> codeUnits) {
     var length = 0;
     while ((codeUnits[length] as Object) != 0) {
       length++;

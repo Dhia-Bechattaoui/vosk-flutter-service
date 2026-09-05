@@ -16,9 +16,9 @@ class Recognizer {
     required this.id,
     required this.model,
     required this.sampleRate,
-    required final MethodChannel channel,
+    required MethodChannel channel,
     this.recognizerPointer,
-    final VoskLibrary? voskLibrary,
+    VoskLibrary? voskLibrary,
   }) : _channel = channel,
        _voskLibrary = voskLibrary;
 
@@ -38,7 +38,7 @@ class Recognizer {
   final VoskLibrary? _voskLibrary;
 
   /// Configures recognizer to output n-best results.
-  Future<void> setMaxAlternatives(final int maxAlternatives) {
+  Future<void> setMaxAlternatives(int maxAlternatives) {
     if (_voskLibrary != null) {
       _voskLibrary.vosk_recognizer_set_max_alternatives(
         recognizerPointer!,
@@ -53,7 +53,7 @@ class Recognizer {
   }
 
   /// Enables/disables words with times in the output of the [getResult].
-  Future<void> setWords({required final bool words}) {
+  Future<void> setWords({required bool words}) {
     if (_voskLibrary != null) {
       _voskLibrary.vosk_recognizer_set_words(recognizerPointer!, words ? 1 : 0);
       return Future.value();
@@ -63,7 +63,7 @@ class Recognizer {
   }
 
   /// Same as [setWords] but for [getPartialResult].
-  Future<void> setPartialWords({required final bool partialWords}) {
+  Future<void> setPartialWords({required bool partialWords}) {
     if (_voskLibrary != null) {
       _voskLibrary.vosk_recognizer_set_partial_words(
         recognizerPointer!,
@@ -79,9 +79,9 @@ class Recognizer {
 
   /// Accept and process new chunk of voice data(audio data in PCM 16-bit
   /// mono format).
-  Future<bool> acceptWaveformBytes(final Uint8List bytes) {
+  Future<bool> acceptWaveformBytes(Uint8List bytes) {
     if (_voskLibrary != null) {
-      final result = using((final arena) {
+      final result = using((arena) {
         final data = bytes.toCharPtr(arena);
         return _voskLibrary.vosk_recognizer_accept_waveform(
           recognizerPointer!,
@@ -94,14 +94,14 @@ class Recognizer {
 
     return _invokeRecognizerMethod<bool>('acceptWaveForm', {
       'bytes': bytes,
-    }).then((final value) => value!);
+    }).then((value) => value!);
   }
 
   /// Accept and process new chunk of voice data(audio data in PCM 16-bit
   /// mono format).
-  Future<bool> acceptWaveformFloats(final Float32List floats) {
+  Future<bool> acceptWaveformFloats(Float32List floats) {
     if (_voskLibrary != null) {
-      final result = using((final arena) {
+      final result = using((arena) {
         final data = floats.toFloatPtr(arena);
         return _voskLibrary.vosk_recognizer_accept_waveform_f(
           recognizerPointer!,
@@ -115,7 +115,7 @@ class Recognizer {
 
     return _invokeRecognizerMethod<bool>('acceptWaveForm', {
       'floats': floats,
-    }).then((final value) => value!);
+    }).then((value) => value!);
   }
 
   /// Returns speech recognition result.
@@ -130,7 +130,7 @@ class Recognizer {
 
     return _invokeRecognizerMethod<String>(
       'getResult',
-    ).then((final value) => value ?? '{}');
+    ).then((value) => value ?? '{}');
   }
 
   /// Returns partial speech recognition.
@@ -147,7 +147,7 @@ class Recognizer {
 
     return _invokeRecognizerMethod<String>(
       'getPartialResult',
-    ).then((final value) => value ?? '{}');
+    ).then((value) => value ?? '{}');
   }
 
   /// Returns speech recognition result. Same as result, but doesn't wait for
@@ -164,13 +164,13 @@ class Recognizer {
 
     return _invokeRecognizerMethod<String>(
       'getFinalResult',
-    ).then((final value) => value ?? '{}');
+    ).then((value) => value ?? '{}');
   }
 
   /// Reconfigures recognizer to use grammar.
-  Future<void> setGrammar(final List<String> grammar) {
+  Future<void> setGrammar(List<String> grammar) {
     if (_voskLibrary != null) {
-      using((final arena) {
+      using((arena) {
         final grammarString = jsonEncode(grammar).toCharPtr(arena);
         _voskLibrary.vosk_recognizer_set_grm(recognizerPointer!, grammarString);
       });

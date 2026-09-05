@@ -55,7 +55,9 @@ void main() {
       model = await vosk.createModel(enSmallModelPath);
       audioBytes = (await rootBundle.load(
         'assets/audio/test.wav',
-      )).buffer.asUint8List();
+      ))
+          .buffer
+          .asUint8List();
     });
 
     setUp(() async {
@@ -73,7 +75,7 @@ void main() {
       ];
       final results = (await recognizeAudio(audioBytes, recognizer))
           .map(
-            (final result) =>
+            (result) =>
                 (jsonDecode(result) as Map<String, dynamic>)['text'] as String,
           )
           .toList();
@@ -94,7 +96,7 @@ void main() {
       );
       final results = (await recognizeAudio(audioBytes, recognizerWithGrammar))
           .map(
-            (final result) =>
+            (result) =>
                 (jsonDecode(result) as Map<String, dynamic>)['text'] as String,
           )
           .toList();
@@ -170,7 +172,7 @@ void main() {
 
 void expectEqualRecognitionResults(
   final List<String> results,
-  final List<String> expectedResults,
+  List<String> expectedResults,
 ) {
   expect(
     listEquals(results, expectedResults),
@@ -181,7 +183,7 @@ void expectEqualRecognitionResults(
 
 Future<List<String>> recognizeAudio(
   final Uint8List audioBytes,
-  final Recognizer recognizer,
+  Recognizer recognizer,
 ) async {
   final results = <String>[];
   const chunkSize = 8192;

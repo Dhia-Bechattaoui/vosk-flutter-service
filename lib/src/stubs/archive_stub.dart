@@ -1,12 +1,12 @@
 // Stub for extractArchiveToDisk
-void extractArchiveToDisk(final Object archive, final String path) {
+void extractArchiveToDisk(Object archive, String path) {
   throw UnimplementedError(
     'extractArchiveToDisk is not implemented on this platform',
   );
 }
 
 class ZipDecoder {
-  Object decodeBytes(final List<int> bytes) {
+  Object decodeBytes(List<int> bytes) {
     throw UnimplementedError('ZipDecoder is not implemented on this platform');
   }
 }

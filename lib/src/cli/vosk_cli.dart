@@ -13,7 +13,7 @@ import 'package:pubspec_parse/pubspec_parse.dart';
 import 'options.dart';
 import 'target_os_type.dart';
 
-Future<void> main(final List<String> arguments) async {
+Future<void> main(List<String> arguments) async {
   try {
     final runner = CommandRunner<void>(
       'dart run vosk_flutter_service',
@@ -47,7 +47,7 @@ class _InstallCommand extends Command<void> {
 
   late Options options;
 
-  String getBinaryTargetPath(final String voskPackagePath) {
+  String getBinaryTargetPath(String voskPackagePath) {
     switch (options.targetOsType!) {
       case TargetOsType.linux:
         return path.join(voskPackagePath, 'linux', 'libs');
@@ -73,7 +73,7 @@ class _InstallCommand extends Command<void> {
     }
   }
 
-  Future<bool> shouldSkipInstall(final Pubspec voskPubspec) async {
+  Future<bool> shouldSkipInstall(Pubspec voskPubspec) async {
     final pubspecFile = await File('pubspec.yaml').readAsString();
     final projectPubspec = Pubspec.parse(pubspecFile);
 
@@ -99,7 +99,7 @@ class _InstallCommand extends Command<void> {
 
   Future<bool> shouldSkipDownload(
     final String binariesPath,
-    final String expectedVersion,
+    String expectedVersion,
   ) async {
     final versionsFile = File(path.join(binariesPath, versionFileName));
     if (await versionsFile.exists()) {
@@ -197,9 +197,7 @@ class _InstallCommand extends Command<void> {
       );
     }
 
-    final packages = packageConfig.packages.where(
-      (final p) => p.name == packageName,
-    );
+    final packages = packageConfig.packages.where((p) => p.name == packageName);
     final package = packages.isEmpty ? null : packages.first;
     if (package == null) {
       throw Exception(
@@ -218,7 +216,7 @@ class _InstallCommand extends Command<void> {
     return packagePath;
   }
 
-  Future<Pubspec> parsePubspec(final String path) async {
+  Future<Pubspec> parsePubspec(String path) async {
     try {
       return Pubspec.parse(await File(path).readAsString());
     } on Exception catch (e) {
@@ -252,7 +250,7 @@ class _InstallCommand extends Command<void> {
     }
   }
 
-  void abort(final String error) {
+  void abort(String error) {
     print(error);
     print(usage);
     exit(64); // usage error

@@ -41,13 +41,13 @@ class VoskFlutterPlugin {
 
   /// Create a model from model data located at the [modelPath].
   /// See [ModelLoader]
-  Future<Model> createModel(final String modelPath) async {
+  Future<Model> createModel(String modelPath) async {
     final completer = Completer<Model>();
 
     if (_supportsFFI()) {
       unawaited(
         compute(_loadModel, modelPath).then(
-          (final modelPointer) => completer.complete(
+          (modelPointer) => completer.complete(
             Model(modelPath, _channel, Pointer.fromAddress(modelPointer)),
           ),
           onError: completer.completeError,
@@ -62,7 +62,7 @@ class VoskFlutterPlugin {
 
   /// Create a spaker model from model data located at the [modelPath].
   /// See [ModelLoader]
-  Future<SpeakerModel> createSpeakerModel(final String modelPath) async {
+  Future<SpeakerModel> createSpeakerModel(String modelPath) async {
     final completer = Completer<SpeakerModel>();
 
     _pendingSpeakerModels[modelPath] = completer;
@@ -77,12 +77,12 @@ class VoskFlutterPlugin {
   /// You can optionally provide [grammar] for the recognizer, see
   /// [Recognizer.setGrammar] for more details about the grammar usage.
   Future<Recognizer> createRecognizer({
-    required final Model model,
-    required final int sampleRate,
-    final List<String>? grammar,
+    required Model model,
+    required int sampleRate,
+    List<String>? grammar,
   }) async {
     if (_supportsFFI()) {
-      return using((final arena) {
+      return using((arena) {
         final recognizerPointer = grammar == null
             ? _voskLibrary.vosk_recognizer_new(
                 model.modelPointer!,
@@ -123,7 +123,7 @@ class VoskFlutterPlugin {
   /// Set speaker model for the recognizer
   Future<void> setSpeakerModel(
     final int recognizerId,
-    final SpeakerModel speakerModel,
+    SpeakerModel speakerModel,
   ) async {
     await _channel.invokeMethod('recognizer.setSpeakerModel', {
       'recognizerId': recognizerId,
@@ -135,7 +135,7 @@ class VoskFlutterPlugin {
   /// audio input from the device microphone.
   ///
   /// This method may throw [MicrophoneAccessDeniedException].
-  Future<SpeechService> initSpeechService(final Recognizer recognizer) async {
+  Future<SpeechService> initSpeechService(Recognizer recognizer) async {
     if (!await PermissionService.requestMicrophonePermission()) {
       throw MicrophoneAccessDeniedException();
     }
@@ -147,7 +147,7 @@ class VoskFlutterPlugin {
     return SpeechService(_channel);
   }
 
-  Future<void> _methodCallHandler(final MethodCall call) async {
+  Future<void> _methodCallHandler(MethodCall call) async {
     switch (call.method) {
       case 'model.created':
         final modelPath = call.arguments as String;
@@ -189,10 +189,10 @@ class VoskFlutterPlugin {
   }
 
   /// Method used to load a model in a separate isolate.
-  static int _loadModel(final String modelPath) {
+  static int _loadModel(String modelPath) {
     final voskLib = _loadVoskLibrary();
     final modelPointer = using(
-      (final arena) => voskLib.vosk_model_new(modelPath.toCharPtr(arena)),
+      (arena) => voskLib.vosk_model_new(modelPath.toCharPtr(arena)),
     );
 
     if (modelPointer == nullptr) {

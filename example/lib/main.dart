@@ -10,15 +10,15 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({final Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(final BuildContext context) =>
+  Widget build(BuildContext context) =>
       const MaterialApp(home: VoskFlutterDemo());
 }
 
 class VoskFlutterDemo extends StatefulWidget {
-  const VoskFlutterDemo({final Key? key}) : super(key: key);
+  const VoskFlutterDemo({Key? key}) : super(key: key);
 
   @override
   State<VoskFlutterDemo> createState() => _VoskFlutterDemoState();
@@ -51,7 +51,7 @@ class _VoskFlutterDemoState extends State<VoskFlutterDemo> {
     try {
       final modelsList = await _modelLoader.loadModelsList();
       final modelDescription = modelsList.firstWhere(
-        (final model) => model.name == _modelName,
+        (model) => model.name == _modelName,
       );
       final modelPath = await _modelLoader.loadFromNetwork(
         modelDescription.url,
@@ -80,7 +80,7 @@ class _VoskFlutterDemoState extends State<VoskFlutterDemo> {
   }
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     if (_error != null) {
       return Scaffold(
         body: Center(child: Text('Error: $_error', style: _textStyle)),
@@ -101,64 +101,66 @@ class _VoskFlutterDemoState extends State<VoskFlutterDemo> {
   }
 
   Widget _androidExample() => Scaffold(
-    body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(
-            onPressed: () async {
-              if (_recognitionStarted) {
-                await _speechService!.stop();
-              } else {
-                await _speechService!.start();
-              }
-              setState(() => _recognitionStarted = !_recognitionStarted);
-            },
-            child: Text(
-              _recognitionStarted ? 'Stop recognition' : 'Start recognition',
-            ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  if (_recognitionStarted) {
+                    await _speechService!.stop();
+                  } else {
+                    await _speechService!.start();
+                  }
+                  setState(() => _recognitionStarted = !_recognitionStarted);
+                },
+                child: Text(
+                  _recognitionStarted
+                      ? 'Stop recognition'
+                      : 'Start recognition',
+                ),
+              ),
+              StreamBuilder(
+                stream: _speechService!.onPartial(),
+                builder: (context, snapshot) =>
+                    Text('Partial result: ${snapshot.data}', style: _textStyle),
+              ),
+              StreamBuilder(
+                stream: _speechService!.onResult(),
+                builder: (context, snapshot) =>
+                    Text('Result: ${snapshot.data}', style: _textStyle),
+              ),
+            ],
           ),
-          StreamBuilder(
-            stream: _speechService!.onPartial(),
-            builder: (final context, final snapshot) =>
-                Text('Partial result: ${snapshot.data}', style: _textStyle),
-          ),
-          StreamBuilder(
-            stream: _speechService!.onResult(),
-            builder: (final context, final snapshot) =>
-                Text('Result: ${snapshot.data}', style: _textStyle),
-          ),
-        ],
-      ),
-    ),
-  );
+        ),
+      );
 
   Widget _commonExample() => Scaffold(
-    body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(
-            onPressed: () async {
-              if (_recognitionStarted) {
-                await _stopRecording();
-              } else {
-                await _recordAudio();
-              }
-              setState(() => _recognitionStarted = !_recognitionStarted);
-            },
-            child: Text(
-              _recognitionStarted ? 'Stop recording' : 'Record audio',
-            ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  if (_recognitionStarted) {
+                    await _stopRecording();
+                  } else {
+                    await _recordAudio();
+                  }
+                  setState(() => _recognitionStarted = !_recognitionStarted);
+                },
+                child: Text(
+                  _recognitionStarted ? 'Stop recording' : 'Record audio',
+                ),
+              ),
+              Text(
+                'Final recognition result: $_fileRecognitionResult',
+                style: _textStyle,
+              ),
+            ],
           ),
-          Text(
-            'Final recognition result: $_fileRecognitionResult',
-            style: _textStyle,
-          ),
-        ],
-      ),
-    ),
-  );
+        ),
+      );
 
   Future<void> _recordAudio() async {
     try {

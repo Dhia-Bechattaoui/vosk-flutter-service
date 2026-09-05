@@ -10,7 +10,7 @@ class VoskFlutterPlugin {
   VoskFlutterPlugin();
 
   /// Registers the plugin with the [registrar].
-  static void registerWith(final Registrar registrar) {
+  static void registerWith(Registrar registrar) {
     final channel = MethodChannel(
       'vosk_flutter_service',
       const StandardMethodCodec(),
@@ -22,7 +22,7 @@ class VoskFlutterPlugin {
   }
 
   /// Handles method calls from the method channel.
-  Future<dynamic> handleMethodCall(final MethodCall call) async {
+  Future<dynamic> handleMethodCall(MethodCall call) async {
     switch (call.method) {
       case 'getPlatformVersion':
         return 'Web';

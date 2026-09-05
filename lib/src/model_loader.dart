@@ -44,7 +44,7 @@ class ModelLoader {
   /// change this behaviour using the [forceReload] flag.
   Future<String> loadFromAssets(
     final String asset, {
-    final bool forceReload = false,
+    bool forceReload = false,
   }) async {
     final modelName = path.basenameWithoutExtension(asset);
     if (!forceReload && await isModelAlreadyLoaded(modelName)) {
@@ -74,7 +74,7 @@ class ModelLoader {
   /// and use [LanguageModelDescription.url].
   Future<String> loadFromNetwork(
     final String modelUrl, {
-    final bool forceReload = false,
+    bool forceReload = false,
   }) async {
     final modelName = path.basenameWithoutExtension(modelUrl);
     if (!forceReload && await isModelAlreadyLoaded(modelName)) {
@@ -87,7 +87,7 @@ class ModelLoader {
 
     final bytes = await httpClient
         .get(Uri.parse(modelUrl))
-        .then((final response) => response.bodyBytes);
+        .then((response) => response.bodyBytes);
 
     final decompressionPath = await _extractModel(bytes);
     final decompressedModelRoot = path.join(decompressionPath, modelName);
@@ -106,7 +106,7 @@ class ModelLoader {
     final jsonList = jsonDecode(responseJson) as List<dynamic>;
     return jsonList
         .map(
-          (final modelJson) => LanguageModelDescription.fromJson(
+          (modelJson) => LanguageModelDescription.fromJson(
             modelJson as Map<String, dynamic>,
           ),
         )
@@ -114,7 +114,7 @@ class ModelLoader {
   }
 
   /// Check if the model with the [modelName] is already loaded.
-  Future<bool> isModelAlreadyLoaded(final String modelName) async {
+  Future<bool> isModelAlreadyLoaded(String modelName) async {
     final decompressionPath = modelStorage ?? await _defaultDecompressionPath();
     if (Directory(path.join(decompressionPath, modelName)).existsSync()) {
       return true;
@@ -124,12 +124,12 @@ class ModelLoader {
   }
 
   /// Get the storage path of the loaded model.
-  Future<String> modelPath(final String modelName) async {
+  Future<String> modelPath(String modelName) async {
     final decompressionPath = modelStorage ?? await _defaultDecompressionPath();
     return path.join(decompressionPath, modelName);
   }
 
-  Future<String> _extractModel(final Uint8List bytes) async {
+  Future<String> _extractModel(Uint8List bytes) async {
     final archive = ZipDecoder().decodeBytes(bytes);
     final decompressionPath = modelStorage ?? await _defaultDecompressionPath();
 

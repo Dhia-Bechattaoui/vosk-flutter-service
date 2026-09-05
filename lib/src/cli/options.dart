@@ -15,9 +15,7 @@ class Options {
 String get usage => _$parserForOptions.usage;
 
 /// Populate parser with generated options.
-ArgParser populateOptionsParser(final ArgParser p) =>
-    _$populateOptionsParser(p);
+ArgParser populateOptionsParser(ArgParser p) => _$populateOptionsParser(p);
 
 /// Parse options.
-Options parseOptionsResult(final ArgResults results) =>
-    _$parseOptionsResult(results);
+Options parseOptionsResult(ArgResults results) => _$parseOptionsResult(results);

@@ -19,7 +19,7 @@ class SpeechService {
 
   /// Start recognition.
   /// Use [onResult] and [onPartial] to get recognition results.
-  Future<bool?> start({final Function? onRecognitionError}) {
+  Future<bool?> start({Function? onRecognitionError}) {
     _errorStreamSubscription ??= EventChannel(
       'error_event_channel',
       const StandardMethodCodec(),
@@ -36,7 +36,7 @@ class SpeechService {
   }
 
   /// Pause/unpause recognition.
-  Future<bool?> setPause({required final bool paused}) =>
+  Future<bool?> setPause({required bool paused}) =>
       _channel.invokeMethod<bool>('speechService.setPause', paused);
 
   /// Reset recognition.
@@ -60,12 +60,12 @@ class SpeechService {
     'result_event_channel',
     const StandardMethodCodec(),
     _channel.binaryMessenger,
-  ).receiveBroadcastStream().map((final result) => result.toString());
+  ).receiveBroadcastStream().map((result) => result.toString());
 
   /// Get stream with voice recognition partial results.
   Stream<String> onPartial() => _partialResultStream ??= EventChannel(
     'partial_event_channel',
     const StandardMethodCodec(),
     _channel.binaryMessenger,
-  ).receiveBroadcastStream().map((final result) => result.toString());
+  ).receiveBroadcastStream().map((result) => result.toString());
 }

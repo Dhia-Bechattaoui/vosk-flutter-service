@@ -12,7 +12,7 @@ class Directory {
   Directory(this.path);
   final String path;
   bool existsSync() => false;
-  void createSync({final bool recursive = false}) {}
+  void createSync({bool recursive = false}) {}
   static Directory get current => Directory('');
 }
 
@@ -20,6 +20,6 @@ class File {
   File(this.path);
   final String path;
   bool existsSync() => false;
-  void writeAsBytesSync(final List<int> bytes) {}
+  void writeAsBytesSync(List<int> bytes) {}
   List<int> readAsBytesSync() => [];
 }
